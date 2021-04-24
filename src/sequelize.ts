@@ -7,10 +7,8 @@ if (!existsSync(dbPath)) {
   throw new Error(`DB not found at ${dbPath}`);
 }
 
-const init = () => new Sequelize({
+export default new Sequelize({
   dialect: 'sqlite',
   storage: dbPath,
-  models: [`${__dirname}/models`],
+  models: [`${__dirname}/models/entities`],
 });
-
-export default init;

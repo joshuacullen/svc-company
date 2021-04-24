@@ -12,4 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'airbnb-typescript/base'
   ],
+  rules: {
+    "import/prefer-default-export": 0 
+  }
 };

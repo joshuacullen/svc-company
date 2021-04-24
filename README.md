@@ -7,6 +7,7 @@ A service that returns data about companies and their shares.
 To run the service:
 
 ```
+cp repo/prod/* repo/dev
 yarn install
 yarn dev
 ```
