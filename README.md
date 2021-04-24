@@ -27,8 +27,13 @@ yarn lint:fix
 
 ## db
 
-###backups
-
+To do backup the db:
 ```
 yarn db:backup
+```
+
+## running the app
+
+```
+PORT=8080 yarn start
 ```
