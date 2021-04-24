@@ -1,0 +1,10 @@
+{
+  "name": "svc-company",
+  "version": "1.0.0",
+  "description": "A service that returns data about companies and their shares",
+  "main": "index.js",
+  "repository": "git@github.com:joshuacullen/svc-company.git",
+  "author": "Joshua Cullen <joshua.cullen111@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
