@@ -6,5 +6,8 @@
   "repository": "git@github.com:joshuacullen/svc-company.git",
   "author": "Joshua Cullen <joshua.cullen111@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "db:backup": "cp repo/database.sqlite3 \"repo/backups/$(date --iso-8601=seconds --utc).sqlite3\""
+  }
 }
