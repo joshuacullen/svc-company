@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
     "module": "commonjs",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
+    "strictPropertyInitialization": false,
     "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "noUnusedLocals": true,

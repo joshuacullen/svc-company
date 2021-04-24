@@ -9,8 +9,8 @@
   "private": false,
   "scripts": {
     "db:backup": "cp repo/database.sqlite3 \"repo/backups/$(date --iso-8601=seconds --utc).sqlite3\"",
-    "dev": "nodemon -r ts-node src/main.ts",
-    "start": "node dist/main.js",
+    "dev": "nodemon -r ts-node src/api/server.ts",
+    "start": "node dist/api/server.js",
     "test": "jest",
     "lint": "yarn eslint src --ext .ts",
     "lint:fix": "yarn lint --fix",
@@ -22,6 +22,7 @@
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.41",
+    "@types/validator": "^13.1.3",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.25.0",
@@ -34,6 +35,12 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@awaitjs/express": "^0.7.2",
+    "express": "^4.17.1",
+    "helmet": "^4.5.0",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.6.2",
+    "sequelize-typescript": "^2.1.0",
+    "sqlite3": "^5.0.2"
   }
 }
