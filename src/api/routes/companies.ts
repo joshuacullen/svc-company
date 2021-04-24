@@ -1,11 +1,8 @@
 import { Router } from '@awaitjs/express';
-import { findAll as findAllCompanies } from '../../context/companies/findAll';
+import { index as companyIndex } from '../controllers/companies';
 
 const routes = Router();
 
-routes.getAsync('/', async (_req, res) => {
-  const companies = await findAllCompanies();
-  res.json(companies);
-});
+routes.getAsync('/', companyIndex);
 
 export default routes;

@@ -1,8 +1,8 @@
 import {
   DataType, Table, Column, Model, HasMany, HasOne,
 } from 'sequelize-typescript';
-import CompanyPriceCloses from './CompanyPriceCloses';
-import CompanyScores from './CompanyScores';
+import CompanyClosePrices from './CompanyClosePrices'; // eslint-disable-line import/no-cycle
+import CompanyScores from './CompanyScores'; // eslint-disable-line import/no-cycle
 
 @Table({ tableName: 'swsCompany', timestamps: false })
 class Companies extends Model {
@@ -12,15 +12,18 @@ class Companies extends Model {
     primaryKey: true,
   }) id: string;
 
+  @Column
+  name: string;
+
   @Column({
     field: 'unique_symbol',
   }) uniqueSymbol: string;
 
-  @HasMany(() => CompanyPriceCloses)
-  closePrices: CompanyPriceCloses[];
+  @HasMany(() => CompanyClosePrices)
+  closePrices: CompanyClosePrices[];
 
   @HasOne(() => CompanyScores)
-  score: CompanyScores[];
+  score: CompanyScores;
 }
 
 export default Companies;

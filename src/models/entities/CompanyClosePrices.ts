@@ -4,7 +4,7 @@ import {
 import Companies from './Companies'; // eslint-disable-line import/no-cycle
 
 @Table({ tableName: 'swsCompanyPriceClose', timestamps: false })
-class CompanyPriceCloses extends Model {
+class CompanyClosePrices extends Model {
   @ForeignKey(() => Companies)
   @Column({
     field: 'company_id',
@@ -21,4 +21,4 @@ class CompanyPriceCloses extends Model {
   date: Date;
 }
 
-export default CompanyPriceCloses;
+export default CompanyClosePrices;

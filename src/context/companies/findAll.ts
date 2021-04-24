@@ -1,18 +1,31 @@
-import { CompaniesModel, CompanyPriceClosesModel, CompanyScoresModel } from '../../models';
+import { CompaniesModel, CompanyClosePricesModel, CompanyScoresModel } from '../../models';
 
-const findAll = async (): Promise<CompaniesModel[]> => {
-  const companies = await CompaniesModel.findAll({
-    include: [
+const MAX_COMPANIES = 10000;
+
+const findAll = async (limit = 100, page = 1, includePrices = false): Promise<CompaniesModel[]> => {
+  const offset = limit * (page - 1);
+
+  const includes: any = [
+    {
+      model: CompanyScoresModel,
+    },
+  ];
+
+  if (includePrices) {
+    includes.push(
       {
-        model: CompanyPriceClosesModel,
+        model: CompanyClosePricesModel,
         separate: true,
-        order: ['date'],
-        limit: 1,
+        order: [['date', 'desc']],
+        limit: 10,
       },
-      {
-        model: CompanyScoresModel,
-      },
-    ],
+    );
+  }
+
+  const companies = await CompaniesModel.findAll({
+    limit: limit > MAX_COMPANIES ? MAX_COMPANIES : limit,
+    offset,
+    include: includes,
   });
 
   return companies;
