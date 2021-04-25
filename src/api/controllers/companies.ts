@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { validate } from 'jsonschema';
 import { findAll as findAllCompanies } from '../../context/companies/findAll';
-import bodyPresenter from '../presenters/body';
+import responsePresenter from '../presenters/response';
 
 interface CompaniesIndexRequestQuery {
   limit?: string;
@@ -44,7 +44,7 @@ const index = async (
   const companies = await findAllCompanies(limit, page, includeClosePrices);
 
   // TODO dry up the links logic
-  const presentedBody = bodyPresenter(
+  const presentedResponse = responsePresenter(
     200,
     companies,
     {
@@ -52,7 +52,7 @@ const index = async (
     },
   );
 
-  return res.json(presentedBody);
+  return res.json(presentedResponse);
 };
 
 export {
