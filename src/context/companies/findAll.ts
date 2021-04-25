@@ -2,7 +2,7 @@ import { CompaniesModel, CompanyScoresModel } from '../../models';
 
 const MAX_ROWS = 10000;
 
-const findAll = async (limit = 100, page = 1, includePrices = false): Promise<Company[]> => {
+const findAll = async (limit = 100, page = 1, includePrices = false): Promise<ICompany[]> => {
   const offset = limit * (page - 1);
 
   const companies = await CompaniesModel.findAll({
@@ -24,12 +24,12 @@ const findAll = async (limit = 100, page = 1, includePrices = false): Promise<Co
       limit: includePrices ? MAX_ROWS : 1,
     });
 
-    const mappedClosePrices = closePrices.map((cp): ClosePrice => ({
+    const mappedClosePrices = closePrices.map((cp): IClosePrice => ({
       price: cp.price,
       date: cp.date,
     }));
 
-    const score: CompanyScore = {
+    const score: ICompanyScore = {
       dividend: companyRow.score.dividend,
       future: companyRow.score.future,
       health: companyRow.score.health,
@@ -39,7 +39,7 @@ const findAll = async (limit = 100, page = 1, includePrices = false): Promise<Co
       sentence: companyRow.score.sentence,
     };
 
-    const company: Company = {
+    const company: ICompany = {
       name: companyRow.name,
       uniqueSymbol: companyRow.uniqueSymbol,
       closePrices: includePrices ? mappedClosePrices : undefined,

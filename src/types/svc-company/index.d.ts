@@ -1,4 +1,4 @@
-interface CompanyScore {
+interface ICompanyScore {
   dividend: number;
   future: number;
   health: number;
@@ -8,12 +8,12 @@ interface CompanyScore {
   sentence: string;
 }
 
-interface ClosePrice {
+interface IClosePrice {
   price: number;
   date: Date;
 }
 
-interface Company {
+interface ICompany {
   name: string;
   uniqueSymbol: string;
   score: CompanyScore;

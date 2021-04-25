@@ -23,6 +23,8 @@ describe('API: Controller: Companies', () => {
       expect(response.body.result[0].score[field]).toBeGreaterThanOrEqual(0);
     });
 
+    expect(response.body.result[0].latestClosePrice.price).toEqual(expect.any(Number));
+    expect(response.body.result[0].latestClosePrice.date.length).toBeGreaterThan(0);
     expect(response.body.result[0].score.sentence.length).toBeGreaterThan(0);
   });
 
