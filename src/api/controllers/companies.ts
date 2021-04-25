@@ -52,6 +52,8 @@ const index = async (
     },
   );
 
+  res.set('Cache-control', 'public, max-age=300');
+
   return res.json(presentedResponse);
 };
 
