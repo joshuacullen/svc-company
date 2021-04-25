@@ -1,11 +1,10 @@
 import request from 'supertest';
-// import { Response } from 'express';
 import app from '../app';
 
 describe('API: Controller: Companies', () => {
   it('should return an array of companies with a snowflake score', async () => {
     const response = await request(app)
-      .get('/companies');
+      .get('/api/companies');
 
     expect(response.status).toEqual(200);
     expect(response.body.status).toEqual(200);
@@ -29,7 +28,7 @@ describe('API: Controller: Companies', () => {
 
   it('should return an array of companies with prices', async () => {
     const response = await request(app)
-      .get('/companies?includePrices=true');
+      .get('/api/companies?includePrices=true');
 
     expect(response.status).toEqual(200);
     expect(response.body.result.length).toBeGreaterThan(0);
@@ -38,7 +37,7 @@ describe('API: Controller: Companies', () => {
 
   it('should return an array of companies without prices', async () => {
     const response = await request(app)
-      .get('/companies?includePrices=false');
+      .get('/api/companies?includePrices=false');
 
     expect(response.status).toEqual(200);
     expect(response.body.result.length).toBeGreaterThan(0);

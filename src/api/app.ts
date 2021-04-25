@@ -3,6 +3,6 @@ import companyRoutes from './routes/companies';
 
 const app = express();
 
-app.use('/companies', companyRoutes);
+app.use('/api/companies', companyRoutes);
 
 export default app;

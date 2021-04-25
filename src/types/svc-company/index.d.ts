@@ -1,5 +1,5 @@
 interface CompanyScore {
-  dividend number;
+  dividend: number;
   future: number;
   health: number;
   past: number;
@@ -14,8 +14,9 @@ interface ClosePrice {
 }
 
 interface Company {
-  name string;
+  name: string;
   uniqueSymbol: string;
   score: CompanyScore;
+  latestClosePrice?: ClosePrice;
   closePrices?: ClosePrice[];
 }

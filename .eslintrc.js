@@ -13,6 +13,8 @@ module.exports = {
     'airbnb-typescript/base'
   ],
   rules: {
-    "import/prefer-default-export": 0 
+    "import/prefer-default-export": 0,
+    "no-await-in-loop": 0,
+    "no-restricted-syntax": 0
   }
 };

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { findAll as findAllCompanies } from '../../context/companies/findAll';
-import companyPresenter from '../presenters/company';
 import bodyPresenter from '../presenters/body';
 
 interface CompaniesIndexRequestQuery {
@@ -21,11 +20,14 @@ const index = async (
 
   const companies = await findAllCompanies(limit, page, includePrices);
 
-  const presentedCompanies = companies.map(
-    (company) => companyPresenter(company, includePrices),
+  // TODO dry up the links logic
+  const presentedBody = bodyPresenter(
+    200,
+    companies,
+    {
+      self: `api/companies?limit=${limit}&page=${page}&includePrices=${includePrices}`,
+    },
   );
-
-  const presentedBody = bodyPresenter(200, presentedCompanies);
 
   return res.json(presentedBody);
 };
