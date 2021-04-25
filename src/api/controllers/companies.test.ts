@@ -26,6 +26,14 @@ describe('API: Controller: Companies', () => {
     expect(response.body.result[0].score.sentence.length).toBeGreaterThan(0);
   });
 
+  it('should return an error with invalid params', async () => {
+    const response = await request(app)
+      .get('/api/companies?page=asdf&includePrices=true');
+
+    expect(response.status).toEqual(400);
+    expect(response.body.errors.length).toBeGreaterThan(0);
+  });
+
   it('should return an array of companies with prices', async () => {
     const response = await request(app)
       .get('/api/companies?includePrices=true');

@@ -40,6 +40,7 @@
     "@awaitjs/express": "^0.7.2",
     "express": "^4.17.1",
     "helmet": "^4.5.0",
+    "jsonschema": "^1.4.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.2",
     "sequelize-typescript": "^2.1.0",
