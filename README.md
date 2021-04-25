@@ -62,3 +62,10 @@ yarn db:backup
 ```
 PORT=8080 yarn start
 ```
+
+## deploy
+
+```
+heroku login
+yarn deploy
+```

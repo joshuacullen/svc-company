@@ -8,14 +8,15 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "ci": "APP_ENV=test yarn test && yarn lint && yarn build",
     "db:backup": "cp repo/database.sqlite3 \"repo/backups/$(date --iso-8601=seconds --utc).sqlite3\"",
-    "ci": "APP_ENV=test yarn test && yarn lint",
+    "deploy": "yarn ci && git push heroku main",
     "dev": "nodemon -r ts-node src/api/server.ts",
     "start": "node dist/api/server.js",
     "test": "APP_ENV=test jest",
     "lint": "yarn eslint src --ext .ts",
     "lint:fix": "yarn lint --fix",
-    "build": "rm -rf dist && tsc -p tsconfig.json",
     "ts-node": "ts-node"
   },
   "engines": {
