@@ -18,6 +18,9 @@
     "build": "rm -rf dist && tsc -p tsconfig.json",
     "ts-node": "ts-node"
   },
+  "engines": {
+    "node": "^16.0.0"
+  },
   "devDependencies": {
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.22",
