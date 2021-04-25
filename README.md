@@ -52,7 +52,7 @@ yarn lint:fix
 
 ## db
 
-To do backup the db:
+To do a backup of the db:
 ```
 yarn db:backup
 ```
