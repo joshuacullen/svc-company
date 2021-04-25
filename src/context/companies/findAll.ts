@@ -2,7 +2,7 @@ import { CompaniesModel, CompanyScoresModel } from '../../models';
 
 const MAX_ROWS = 10000;
 
-const findAll = async (limit = 100, page = 1, includePrices = false): Promise<ICompany[]> => {
+const findAll = async (limit = 100, page = 1, includeClosePrices = false): Promise<ICompany[]> => {
   const offset = limit * (page - 1);
 
   const companies = await CompaniesModel.findAll({
@@ -21,7 +21,7 @@ const findAll = async (limit = 100, page = 1, includePrices = false): Promise<IC
     const closePrices = await companyRow.$get('closePrices', {
       order: [['date', 'desc']],
       // Only need the latest if we're not including prices
-      limit: includePrices ? MAX_ROWS : 1,
+      limit: includeClosePrices ? MAX_ROWS : 1,
     });
 
     const mappedClosePrices = closePrices.map((cp): IClosePrice => ({
@@ -42,7 +42,7 @@ const findAll = async (limit = 100, page = 1, includePrices = false): Promise<IC
     const company: ICompany = {
       name: companyRow.name,
       uniqueSymbol: companyRow.uniqueSymbol,
-      closePrices: includePrices ? mappedClosePrices : undefined,
+      closePrices: includeClosePrices ? mappedClosePrices : undefined,
       latestClosePrice: mappedClosePrices.length ? mappedClosePrices[0] : undefined,
       score,
     };

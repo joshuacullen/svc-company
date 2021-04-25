@@ -6,7 +6,7 @@ import bodyPresenter from '../presenters/body';
 interface CompaniesIndexRequestQuery {
   limit?: string;
   page?: string;
-  includePrices?: string
+  includeClosePrices?: string
 }
 
 const indexSchema = {
@@ -14,7 +14,7 @@ const indexSchema = {
   properties: {
     limit: { type: 'integer', minimum: 0, maximum: 10000 },
     page: { type: 'integer', minimum: 0, maximum: 10000 },
-    includePrices: { type: 'boolean' },
+    includeClosePrices: { type: 'boolean' },
   },
 };
 
@@ -25,13 +25,13 @@ const index = async (
   // TODO dry this up
   const limit = req.query.limit ? parseInt(req.query.limit, 10) : 10;
   const page = req.query.page ? parseInt(req.query.page, 10) : 1;
-  const includePrices = req.query.includePrices === 'true';
+  const includeClosePrices = req.query.includeClosePrices === 'true';
 
   // TODO wrap this up in a middleware that's shared between routes
   const validation = validate({
     limit,
     page,
-    includePrices,
+    includeClosePrices,
   }, indexSchema);
 
   if (!validation.valid) {
@@ -41,14 +41,14 @@ const index = async (
     });
   }
 
-  const companies = await findAllCompanies(limit, page, includePrices);
+  const companies = await findAllCompanies(limit, page, includeClosePrices);
 
   // TODO dry up the links logic
   const presentedBody = bodyPresenter(
     200,
     companies,
     {
-      self: `api/companies?limit=${limit}&page=${page}&includePrices=${includePrices}`,
+      self: `api/companies?limit=${limit}&page=${page}&includeClosePrices=${includeClosePrices}`,
     },
   );
 

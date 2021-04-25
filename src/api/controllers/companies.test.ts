@@ -30,7 +30,7 @@ describe('API: Controller: Companies', () => {
 
   it('should return an error with invalid params', async () => {
     const response = await request(app)
-      .get('/api/companies?page=asdf&includePrices=true');
+      .get('/api/companies?page=asdf&includeClosePrices=true');
 
     expect(response.status).toEqual(400);
     expect(response.body.errors.length).toBeGreaterThan(0);
@@ -38,7 +38,7 @@ describe('API: Controller: Companies', () => {
 
   it('should return an array of companies with prices', async () => {
     const response = await request(app)
-      .get('/api/companies?includePrices=true');
+      .get('/api/companies?includeClosePrices=true');
 
     expect(response.status).toEqual(200);
     expect(response.body.result.length).toBeGreaterThan(0);
@@ -47,7 +47,7 @@ describe('API: Controller: Companies', () => {
 
   it('should return an array of companies without prices', async () => {
     const response = await request(app)
-      .get('/api/companies?includePrices=false');
+      .get('/api/companies?includeClosePrices=false');
 
     expect(response.status).toEqual(200);
     expect(response.body.result.length).toBeGreaterThan(0);
